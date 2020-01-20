@@ -1,3 +1,10 @@
+
+Run     
+        Generation
+                Gen Best Fitness
+                        Avg Fitness
+                                Std Fitness
+
 1       0       66      50.48   5.014081182131978
 1       1       60      50.42   4.851699691756463
 1       2       62      51.37   4.473615129091046

@@ -1,3 +1,4 @@
+
 /******************************************************************************
 *  A Teaching GA					  Developed by Hal Stringer & Annie Wu, UCF
 *  Version 2, January 18, 2004
@@ -7,12 +8,11 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-public class Parameters
-{
+public class Parameters {
 
-/*******************************************************************************
-*                            INSTANCE VARIABLES                                *
-*******************************************************************************/
+	/*******************************************************************************
+	 * INSTANCE VARIABLES *
+	 *******************************************************************************/
 
 	public static String expID;
 	public static String problemType;
@@ -39,54 +39,74 @@ public class Parameters
 	public static int numGenes;
 	public static int geneSize;
 
-/*******************************************************************************
-*                              CONSTRUCTORS                                    *
-*******************************************************************************/
+	/*******************************************************************************
+	 * CONSTRUCTORS *
+	 *******************************************************************************/
 
-	public Parameters(String parmfilename) throws java.io.IOException{
+	public Parameters(String parmfilename) throws java.io.IOException {
 
 		String readLine;
-		BufferedReader parmInput = new BufferedReader(new FileReader (parmfilename));
+		BufferedReader parmInput = new BufferedReader(new FileReader(parmfilename));
 
-		expID = parmInput.readLine().substring(30);
+		expID = parmInput.readLine().substring(30);// Experiment ID
 		problemType = parmInput.readLine().substring(30);
 
 		dataInputFileName = parmInput.readLine().substring(30);
 
 		numRuns = Integer.parseInt(parmInput.readLine().substring(30).trim());
-		generations = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		generations = Integer.parseInt(parmInput.readLine().substring(30).trim());// per run
 		popSize = Integer.parseInt(parmInput.readLine().substring(30).trim());
 
 		selectType = Integer.parseInt(parmInput.readLine().substring(30).trim());
-		scaleType = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		// 1 = Proportional Selection
+		// 2 = Tournament Selection
+		// 3 = Random Selection
+
+		scaleType = Integer.parseInt(parmInput.readLine().substring(30).trim());// Fitness Scaling Type
+		// 0 = Scale for Maximization (no change to raw fitness)
+		// 1 = Scale for Minimization (reciprocal of raw fitness)
+		// 2 = Rank for Maximization
+		// 3 = Rank for Minimization
 
 		xoverType = Integer.parseInt(parmInput.readLine().substring(30).trim());
-		xoverRate = Double.parseDouble(parmInput.readLine().substring(30).trim());
-		mutationType = Integer.parseInt(parmInput.readLine().substring(30).trim());
-		mutationRate = Double.parseDouble(parmInput.readLine().substring(30).trim());
+		// 1 = Single Point Crossover
+		// 2 = Two Point Crossover
+		// 3 = Uniform Crossover
+
+		xoverRate = Double.parseDouble(parmInput.readLine().substring(30).trim()); // from 0 to 1, Use "0" to turn off
+																					// crossover
+
+		mutationType = Integer.parseInt(parmInput.readLine().substring(30).trim());// 1 = Flip Bit
+
+		mutationRate = Double.parseDouble(parmInput.readLine().substring(30).trim());// from 0 to 1, Use "0" to turn off
+																						// mutation
 
 		seed = Long.parseLong(parmInput.readLine().substring(30).trim());
-		numGenes = Integer.parseInt(parmInput.readLine().substring(30).trim());
+
+		numGenes = Integer.parseInt(parmInput.readLine().substring(30).trim());// in each chromosome.
+
 		geneSize = Integer.parseInt(parmInput.readLine().substring(30).trim());
+		// is the number of bits in each gene. Number of Genes times Size
+		// gives the number of bits in each chromosome.
 
 		parmInput.close();
 
-		if (scaleType==0 || scaleType==2) minORmax = "max";
-		else minORmax = "min";
+		if (scaleType == 0 || scaleType == 2)
+			minORmax = "max";
+		else
+			minORmax = "min";
 
 	}
 
-/*******************************************************************************
-*                                MEMBER METHODS                                *
-*******************************************************************************/
+	/*******************************************************************************
+	 * MEMBER METHODS *
+	 *******************************************************************************/
 
+	/*******************************************************************************
+	 * STATIC METHODS *
+	 *******************************************************************************/
 
-/*******************************************************************************
-*                             STATIC METHODS                                   *
-*******************************************************************************/
-
-	public static void outputParameters(FileWriter output) throws java.io.IOException{
-
+	public static void outputParameters(FileWriter output) throws java.io.IOException {
 
 		output.write("Experiment ID                :  " + expID + "\n");
 		output.write("Problem Type                 :  " + problemType + "\n");
@@ -113,4 +133,4 @@ public class Parameters
 		output.write("\n\n");
 
 	}
-}   // End of Parameters.java **************************************************
+} // End of Parameters.java **************************************************
