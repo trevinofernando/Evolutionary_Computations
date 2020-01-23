@@ -85,10 +85,10 @@ public class Search {
 		// Set up Fitness Statistics matrix
 		fitnessStats = new double[4][Parameters.generations];
 		for (int i = 0; i < Parameters.generations; i++) {
-			fitnessStats[0][i] = 0;
-			fitnessStats[1][i] = 0;
-			fitnessStats[2][i] = 0;
-			fitnessStats[3][i] = 0;
+			fitnessStats[0][i] = 0; // Avg Avg Fitness
+			fitnessStats[1][i] = 0; // Avg Best Fitness
+			fitnessStats[2][i] = 0; // Std deviation of Avg Fitness
+			fitnessStats[3][i] = 0; // Std deviation of Best Fitness
 		}
 
 		// Problem Specific Setup - For new new fitness function problems, create

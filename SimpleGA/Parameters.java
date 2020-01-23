@@ -61,6 +61,7 @@ public class Parameters {
 		// 1 = Proportional Selection
 		// 2 = Tournament Selection
 		// 3 = Random Selection
+		// 4 = Rank Selection
 
 		scaleType = Integer.parseInt(parmInput.readLine().substring(30).trim());// Fitness Scaling Type
 		// 0 = Scale for Maximization (no change to raw fitness)
