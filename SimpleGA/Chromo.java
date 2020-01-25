@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-public class Chromo {
+public class Chromo implements Comparable<Chromo> {
 	/*******************************************************************************
 	 * INSTANCE VARIABLES *
 	 *******************************************************************************/
@@ -52,6 +52,16 @@ public class Chromo {
 	/*******************************************************************************
 	 * MEMBER METHODS *
 	 *******************************************************************************/
+
+	@Override
+	public int compareTo(Chromo other) {
+		if (this.proFitness > other.proFitness) {
+			return 1;
+		} else if (this.proFitness < other.proFitness) {
+			return -1;
+		}
+		return 0;
+	}
 
 	// Get Alpha Represenation of a Gene **************************************
 
@@ -177,6 +187,15 @@ public class Chromo {
 				return (j); // return high fit number
 
 		case 4: // Rank Selection
+			Arrays.sort(Search.member);
+			randnum = Search.r.nextDouble();
+			k = (int) (randnum * ((Parameters.popSize * (Parameters.popSize + 1)) / 2));
+			for (j = 0; j < Parameters.popSize; j++) {
+				rWheel = rWheel + j + 1;
+				if (k < rWheel)
+					return (j);
+			}
+			break;
 
 		default:
 			System.out.println("ERROR - No selection method selected");
